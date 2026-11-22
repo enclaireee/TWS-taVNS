@@ -1,5 +1,5 @@
 PY := .venv/bin/python
-.PHONY: setup dev api web mobile demo test
+.PHONY: setup dev api web mobile demo test paper refs
 
 setup:                     ## one-time: python venv + JS deps
 	python3 -m venv .venv
@@ -24,3 +24,9 @@ demo:                      ## print one scenario: make demo S=rapid_hr_drop
 
 test:                      ## all 9 scenarios + unit tests
 	$(PY) -m pytest -q
+
+paper:                     ## build docs/research/tws-tavns-evidence.pdf (TeX Live + biber)
+	cd docs/research && latexmk -pdf -interaction=nonstopmode -halt-on-error tws-tavns-evidence.tex && latexmk -c tws-tavns-evidence.tex
+
+refs:                      ## re-check every DOI in docs/research/references.bib against Crossref and PubMed (network)
+	$(PY) docs/research/check_refs.py

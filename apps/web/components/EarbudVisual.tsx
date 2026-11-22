@@ -1,9 +1,10 @@
 import type { Telemetry } from "@/lib/api";
+import { IMPEDANCE_MAX_KOHM } from "@/lib/api";
 
 export function EarbudTwin({ tel, down }: { tel: Telemetry; down: boolean }) {
   const stim = tel.stimulating && tel.stim;
   const locked = tel.state === "locked" || tel.state === "safe_mode";
-  const highImp = tel.impedance_kohm != null && tel.impedance_kohm > 50;
+  const highImp = tel.impedance_kohm != null && tel.impedance_kohm > IMPEDANCE_MAX_KOHM;
 
   const electrodeColor = locked || highImp
     ? "#f05259"

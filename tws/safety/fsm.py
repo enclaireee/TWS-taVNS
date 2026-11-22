@@ -17,14 +17,15 @@ class State(str, Enum):
 
 @dataclass
 class FsmConfig:
-    amp_mA: float = 1.0                # titrated per patient; default is conservative
-    freq_Hz: float = 25.0
-    pw_us: float = 250.0
-    responsive_s: float = 30.0
-    scheduled_s: float = 1800.0
-    cooldown_s: float = 120.0
-    max_per_hour: int = 6
-    max_per_day: int = 30
+    """Defaults and their sources: docs/research/tws-tavns-evidence.pdf, sec. 4 and the audit table (sec. 7)."""
+    amp_mA: float = 1.0                # start of per-patient titration (cMPsE02 25 Hz arm: 0.50 +- 0.47 mA)
+    freq_Hz: float = 25.0              # Frangos 2015, cMPsE02 / NEMOS
+    pw_us: float = 250.0               # per phase, biphasic (Frangos 2015, NEMOS)
+    responsive_s: float = 60.0         # AspireSR AutoStim on-time (Fisher 2016); 60 s taVNS blocks safe (Badran 2018)
+    scheduled_s: float = 1800.0        # one 30 min session (He 2013: 3 x 30 min/day)
+    cooldown_s: float = 120.0          # design: keeps on/off duty <= 33% locally (intermittent, Agnew & McCreery 1990)
+    max_per_hour: int = 6              # 6 x 60 s = 10% hourly duty, the VNS Normal Mode duty cycle (Fisher 2016)
+    max_per_day: int = 30              # design: <= 30 min/day responsive, well below NEMOS 4-5 h/day
     responsive_enabled: bool = True
 
 

@@ -36,13 +36,13 @@ make demo S=rapid_hr_drop
 Output is a timeline, one line per decision, ending in `PASS` or `FAIL`:
 
 ```
-   74.5s  lock       {'reasons': ['bradycardia (absolute floor)']}
-   74.5s  state      {'frm': 'monitor', 'to': 'locked'}
-   83.0s  reject     {'why': 'locked', 'scheduled': False}
+   73.8s  lock       {'reasons': ['HR unavailable (safe path)']}
+   73.8s  state      {'frm': 'monitor', 'to': 'locked'}
+   85.0s  reject     {'why': 'locked', 'scheduled': False}
 PASS
 ```
 
-Here the heart rate fell below the floor, so the device locked itself and refused the stimulation request that followed. `PASS` means that matches what the scenario expects.
+Here the heart rate collapsed from 70 to 35 bpm. While the 8 s pulse window still mixed both rates there was no clean reading, so the device locked on the safe path; from then on the reading sat below the 40 bpm floor, and the stimulation request that followed was refused. `PASS` means that matches what the scenario expects.
 
 ### Live dashboard
 
@@ -56,7 +56,7 @@ Open <http://localhost:3000>. The simulation starts on its own. Click any scenar
 
 ![Dashboard during a seizure scenario](docs/img/dashboard-stim.png)
 
-**A safety rule blocks it** (`rapid_hr_drop`). Heart rate falls to 37 bpm, the card turns red and says why, and every stimulation request is rejected.
+**A safety rule blocks it** (`rapid_hr_drop`). Heart rate falls to about 35 bpm, the card turns red and says why, and every stimulation request is rejected.
 
 ![Dashboard locked on low heart rate](docs/img/dashboard-locked.png)
 
@@ -78,9 +78,9 @@ What each part of the page means:
 | State | Meaning |
 |---|---|
 | Monitor | Watching. No stimulation. |
-| Stim | Stimulating (30 s for a seizure response) |
-| Cooldown | Waiting 120 s after a stimulation before another is allowed |
-| Locked | A safety rule fired (heart rate drop, fall then stillness, no heart-rate signal). Stimulation refused until it clears. |
+| Stim | Stimulating (60 s for a seizure response) |
+| Cooldown | Waiting 120 s after a stimulation before another is allowed (at most 6 per hour, 30 per day) |
+| Locked | A safety rule fired (heart rate under 40 bpm or 30% under baseline; a fall then stillness, held 3 min; no heart-rate signal). Stimulation refused until it clears. |
 | Safe mode | The link to the sensor is late or has gaps, so the device can't trust its data. Stimulation refused. |
 
 The detector only proposes. The state machine decides, and Locked and Safe mode beat everything.
@@ -126,3 +126,4 @@ Most of these are about the device correctly doing nothing. Only two of the nine
 - Code map and architecture: [README.md](README.md)
 - API both apps use (REST plus WebSocket): [docs/api.md](docs/api.md)
 - Swapping in a real earbud: [docs/hardware.md](docs/hardware.md)
+- Where every parameter comes from: [docs/research/tws-tavns-evidence.pdf](docs/research/tws-tavns-evidence.pdf) (LaTeX source alongside)

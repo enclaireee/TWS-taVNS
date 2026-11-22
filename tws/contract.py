@@ -14,7 +14,7 @@ class SensorPacket:
     seq: int                  # increments by 1 per packet; gaps = lost packets
     fs_eeg: int
     eeg: list                 # [ch][n] ear-canal, cymba, reference
-    fs_ppg: int = 50
+    fs_ppg: int = 48                  # PPG and IMU: 12 samples per 250 ms packet; >= 25 Hz (Choi & Shin 2017)
     ppg: list = field(default_factory=list)
     imu: list = field(default_factory=list)       # [n][6]
     impedance: list = field(default_factory=list)  # kOhm per EEG channel

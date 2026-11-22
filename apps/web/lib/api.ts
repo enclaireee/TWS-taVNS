@@ -2,6 +2,9 @@
 export const API = process.env.NEXT_PUBLIC_API ?? "http://localhost:8000";
 export const WS_URL = API.replace(/^http/, "ws") + "/ws";
 
+// Same limit as GateConfig.impedance_max_kohm in tws/safety/gate.py (docs/research, sec. 5.6).
+export const IMPEDANCE_MAX_KOHM = 40;
+
 export type DeviceState = "monitor" | "stim" | "cooldown" | "locked" | "safe_mode";
 export type LiveInjection =
   | "seizure"

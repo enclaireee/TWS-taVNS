@@ -9,17 +9,20 @@ class SeizureDetector(Protocol):
 
 
 class BandPowerDetector:
-    """Score = 12.5-25 Hz power relative to this patient's calm baseline (fit from a calm recording)."""
+    """Score = largest filterbank band power (any channel, any of the 8 bands in 0.5-25 Hz) relative to this
+    patient's calm baseline for that band (fit from a calm recording). Patient-specific, as in Shoeb & Guttag 2010.
+    persist_n=5 one-second-stride windows of 2 s span 6 s, the minimum persistence EEG readers require (Shoeb & Guttag
+    2010, W=3 x 2 s). thr=8 (9 dB) is a design value to be fitted per patient on CHB-MIT / ear-EEG (sec. 5.3-5.4)."""
 
-    def __init__(self, thr=8.0, persist_n=3):
+    def __init__(self, thr=8.0, persist_n=5):
         self.thr, self.persist_n, self.base = thr, persist_n, None
 
     def fit(self, calm_feats: list[dict]):
-        self.base = float(np.median([np.mean(f["bp_12_25"]) for f in calm_feats]))
+        self.base = np.median([np.mean(f["bands"], axis=0) for f in calm_feats], axis=0)   # [band]
         return self
 
     def score(self, feat: dict) -> float:
-        return float(max(feat["bp_12_25"]) / (self.base + 1e-12))
+        return float(np.max(np.asarray(feat["bands"]) / (self.base + 1e-12)))
 
 
 class Persistence:
