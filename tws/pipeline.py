@@ -11,7 +11,7 @@ class Pipeline:
     def __init__(self, link, detector, gate, fsm, limiter, stim, late_s=1.0, pkt_s=0.25):
         self.link, self.det, self.gate, self.fsm, self.lim, self.stim = link, detector, gate, fsm, limiter, stim
         self.late_s, self.pkt_s = late_s, pkt_s
-        self.persist = Persistence(getattr(detector, "persist_n", 3))
+        self.persist = Persistence(getattr(detector, "persist_n", 5))
         self.events: list[Event] = []
         self._eeg = self._ppg = self._imu = None
         self._fs = (256, 48, 48)

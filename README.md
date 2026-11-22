@@ -36,7 +36,8 @@ earbud (sim) --SensorPacket--> link --> signal --> safety --> StimCommand --> st
 | `apps/web`, `apps/mobile` | Dashboard and phone app; read-only except ABORT |
 | `tests/` | Runs every scenario and the safety rules |
 
-Full run guide with screenshots: [run.md](run.md). Docs: [`docs/api.md`](docs/api.md) (API both apps use), [`docs/hardware.md`](docs/hardware.md) (how to swap in a real earbud).
+Full run guide with screenshots: [run.md](run.md). Docs: [`docs/api.md`](docs/api.md) (API both apps use), [`docs/hardware.md`](docs/hardware.md) (how to swap in a real earbud),
+[`docs/research/`](docs/research/) (LaTeX evidence review: the source and verification status of every parameter; `make paper` builds the PDF).
 
 ## License
 MIT, see [LICENSE](LICENSE).
