@@ -1,17 +1,44 @@
-// Types match docs/api.md
+// Types match docs/api.md + live human demo extensions
 export const API = process.env.NEXT_PUBLIC_API ?? "http://localhost:8000";
 export const WS_URL = API.replace(/^http/, "ws") + "/ws";
 
 export type DeviceState = "monitor" | "stim" | "cooldown" | "locked" | "safe_mode";
+export type LiveInjection =
+  | "seizure"
+  | "hr_drop"
+  | "fall"
+  | "chewing"
+  | "electrode_off"
+  | "drop_link"
+  | "normal";
+
 export type Stim = {
   amp_mA: number; freq_Hz: number; pw_us: number; duration_s: number;
   site: string; reason: string; cmd_id: string | number;
 };
+
 export type Telemetry = {
-  t: number; state: DeviceState; hr: number | null; hr_baseline: number | null;
-  link_ok: boolean; lost: number; lock_reasons: string[]; review_required: boolean;
-  stimulating: boolean; stim: Stim | null; scenario: string; done: boolean; speed: number;
+  t: number;
+  state: DeviceState;
+  hr: number | null;
+  hr_baseline: number | null;
+  link_ok: boolean;
+  lost: number;
+  lock_reasons: string[];
+  review_required: boolean;
+  stimulating: boolean;
+  stim: Stim | null;
+  scenario: string;
+  done: boolean;
+  speed: number;
+  live_mode?: boolean;
+  injections?: string[];
+  ppg?: number[];
+  eeg?: number[];
+  imu_g?: number | null;
+  impedance_kohm?: number | null;
 };
+
 export type EventKind = "candidate" | "stim" | "reject" | "abort" | "lock" | "unlock" | "safe_mode" | "state";
 export type DeviceEvent = { t: number; kind: EventKind; detail: string | Record<string, unknown> };
 export type Scenario = { key: string; title: string };
@@ -29,7 +56,12 @@ export const getScenarios = () => req<Scenario[]>("/scenarios");
 export const getResults = () => req<Result[]>("/results");
 export const playScenario = (key: string, speed = 10) =>
   req<Telemetry>(`/scenario/${encodeURIComponent(key)}?speed=${speed}`, "POST");
+export const startLive = (speed = 2) =>
+  req<Telemetry>(`/live?speed=${speed}`, "POST");
+export const injectLive = (kind: LiveInjection) =>
+  req<Telemetry>(`/live/inject/${encodeURIComponent(kind)}`, "POST");
 export const abort = () => req<unknown>("/abort", "POST");
+export const clearReview = () => req<Telemetry>("/clear_review", "POST");
 
 // Only receives telemetry; never sends anything over the socket.
 export function connectTelemetry(
