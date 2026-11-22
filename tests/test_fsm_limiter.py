@@ -12,9 +12,10 @@ def test_responsive_then_cooldown_then_monitor():
     (c,) = f.step(0, True, OK, True)
     assert c.reason == "responsive" and f.state == State.STIM
     assert f.step(5, True, OK, True) == [] and f.state == State.STIM     # no retrigger mid-packet
-    f.step(31, False, OK, True); assert f.state == State.COOLDOWN
-    assert f.step(32, True, OK, True) == []                              # cooldown rejects
-    f.step(42, False, OK, True); assert f.state == State.MONITOR
+    f.step(59, False, OK, True); assert f.state == State.STIM            # 60 s responsive on-time
+    f.step(61, False, OK, True); assert f.state == State.COOLDOWN
+    assert f.step(62, True, OK, True) == []                              # cooldown rejects
+    f.step(72, False, OK, True); assert f.state == State.MONITOR
 
 
 def test_lock_blocks_responsive_and_scheduled_and_aborts_running_stim():

@@ -18,7 +18,7 @@ export default function Therapy() {
         <Row k="Amplitude" v={`${amp.toFixed(1)} mA`} />
         <Row k="Frequency" v={`${freq} Hz`} />
         <Row k="Pulse width" v={`${pw} µs`} />
-        <Row k="Duration" v="30 s" />
+        <Row k="Duration" v="60 s" />
         <Row k="Cooldown" v="120 s" />
       </Card>
       <Section n={2} title="Hard limits" />

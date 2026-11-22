@@ -7,7 +7,7 @@
 <rect class="s" x="160" y="230" width="130" height="50" rx="25"/><text class="t" x="225" y="260">Locked</text>
 <rect class="s" x="450" y="230" width="130" height="50" rx="25"/><text class="t" x="515" y="260">Safe mode</text>
 <path class="l" d="M150,120 H298"/><text class="m" x="224" y="112">seizure + gates OK</text>
-<path class="l" d="M430,130 H588"/><text class="m" x="509" y="122">30 s done / abort</text>
+<path class="l" d="M430,130 H588"/><text class="m" x="509" y="122">60 s done / abort</text>
 <path class="l" d="M655,100 C655,30 85,30 85,98"/><text class="m" x="370" y="44">120 s cooldown over</text>
 <path class="l" d="M85,160 C85,210 120,255 158,255"/><text class="m" x="60" y="210">HR drop,</text><text class="m" x="60" y="224">fall + still</text>
 <path class="l" d="M365,160 C365,200 480,215 515,228"/><text class="m" x="400" y="215">link late / gap</text>

@@ -15,13 +15,13 @@ class GateResult:
 
 @dataclass
 class GateConfig:
-    drop_frac: float = 0.30            # rapid HR drop vs baseline
+    drop_frac: float = 0.30            # design: rapid HR drop vs baseline; taVNS itself moves HR by ~1-3 bpm (Badran 2018)
     recover_frac: float = 0.10         # lock clears when HR within 10% of baseline again
-    impedance_max_kohm: float = 50.0   # ponytail: placeholder threshold, tune on hardware
-    baseline_window_s: float = 300.0
+    impedance_max_kohm: float = 40.0   # highest impedance shown not to degrade EEG (Ferree 2001); dry electrodes differ
+    baseline_window_s: float = 300.0   # 5 min, the short-term HRV recording length (Shaffer & Ginsberg 2017)
     min_baseline_s: float = 30.0
-    still_hold_s: float = 60.0         # keep lock after a fall-then-still pattern
-    abs_floor_bpm: float = 40.0        # absolute bradycardia floor
+    still_hold_s: float = 180.0        # covers the 3 min post-convulsive window of cardiorespiratory failure (MORTEMUS)
+    abs_floor_bpm: float = 40.0        # below the <50 bpm awake definition (ACC/AHA/HRS 2018), above ictal/VNS ~30 bpm
 
 
 class SafetyGate:
