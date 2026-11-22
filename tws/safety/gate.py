@@ -21,7 +21,7 @@ class GateConfig:
     baseline_window_s: float = 300.0
     min_baseline_s: float = 30.0
     still_hold_s: float = 60.0         # keep lock after a fall-then-still pattern
-    abs_floor_bpm: float = 40.0        # ponytail: PLACEHOLDER absolute bradycardia floor, clinical value needed
+    abs_floor_bpm: float = 40.0        # absolute bradycardia floor
 
 
 class SafetyGate:
