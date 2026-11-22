@@ -1,0 +1,11 @@
+[project]
+name = "tws-tavns"
+version = "0.1.0"
+requires-python = ">=3.11"
+dependencies = ["numpy", "scipy", "scikit-learn", "fastapi", "uvicorn[standard]", "websockets", "pytest", "pyedflib"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.setuptools]
+packages = ["tws", "tws.signal", "tws.safety", "tws.sim", "tws.api"]

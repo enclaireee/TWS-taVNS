@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 250" font-family="Helvetica,Arial,sans-serif" font-size="14">
+<defs><marker id="a" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8z" fill="#4c2a8a"/></marker></defs>
+<style>.b{fill:#f4f0fb;stroke:#4c2a8a;stroke-width:1.5}.s{fill:#fde8e8;stroke:#c0172b;stroke-width:1.5}.t{fill:#1c1330;text-anchor:middle}.m{fill:#6b6580;text-anchor:middle;font-size:12}.l{stroke:#4c2a8a;stroke-width:2;fill:none;marker-end:url(#a)}</style>
+<rect class="b" x="10" y="60" width="130" height="70" rx="8"/><text class="t" x="75" y="90">Earbud</text><text class="m" x="75" y="110">tws/sim</text>
+<rect class="b" x="190" y="60" width="110" height="70" rx="8"/><text class="t" x="245" y="90">Link</text><text class="m" x="245" y="110">tws/link.py</text>
+<rect class="b" x="350" y="60" width="130" height="70" rx="8"/><text class="t" x="415" y="90">Signal</text><text class="m" x="415" y="110">filters, detector</text>
+<rect class="s" x="530" y="60" width="150" height="70" rx="8"/><text class="t" x="605" y="90">Safety</text><text class="m" x="605" y="110">gate, FSM, limiter</text>
+<rect class="b" x="730" y="60" width="130" height="70" rx="8"/><text class="t" x="795" y="90">Stimulator</text><text class="m" x="795" y="110">fake (logs only)</text>
+<path class="l" d="M140,95 H188"/><path class="l" d="M300,95 H348"/><path class="l" d="M480,95 H528"/><path class="l" d="M680,95 H728"/>
+<text class="m" x="164" y="82">packets</text><text class="m" x="324" y="82">frames</text><text class="m" x="504" y="82">flag</text><text class="m" x="704" y="82">cmd</text>
+<path d="M605,130 V200 H795 V132" class="l" stroke="#c0172b" style="marker-end:url(#a)"/>
+<text class="t" x="700" y="222" fill="#c0172b" style="fill:#c0172b">ABORT always wins (manual, lock, safe mode)</text>
+<rect x="10" y="10" width="850" height="24" fill="none"/><text class="m" x="435" y="28" style="text-anchor:middle">tws/pipeline.py runs this whole chain once per 250 ms packet</text>
+</svg>
