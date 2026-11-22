@@ -1,4 +1,5 @@
 import type { DeviceState, LiveInjection, Stim, Telemetry } from "@/lib/api";
+import { IMPEDANCE_MAX_KOHM } from "@/lib/api";
 import { EarbudTwin, VitalityRing } from "@/components/EarbudVisual";
 
 export type Frame = { t: number; hr: number | null };
@@ -260,7 +261,7 @@ export function Hero({
       : null;
   const hrAlert = delta != null && delta <= -15;
   const locked = tel.lock_reasons.length > 0 || tel.review_required;
-  const highImp = tel.impedance_kohm != null && tel.impedance_kohm > 50;
+  const highImp = tel.impedance_kohm != null && tel.impedance_kohm > IMPEDANCE_MAX_KOHM;
   const s = tel.stim;
   const activeInj = new Set(tel.injections ?? []);
   const eegBurst = activeInj.has("seizure") || tel.state === "stim";
