@@ -127,7 +127,7 @@ export default function Page() {
             ) : <p className="muted">No results yet. Run all scenarios.</p>}
           </Card>
           <section className="note" aria-label="Model note">
-            <p><b>Synthetic demo, no clinical claim.</b></p>
+            <p><b>Synthetic demo data.</b></p>
             <p>Sensitivity and false alarms per 24 h: pending CHB-MIT evaluation</p>
           </section>
         </div>

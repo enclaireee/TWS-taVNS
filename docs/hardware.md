@@ -11,4 +11,3 @@ Open items before any real use (all PLACEHOLDER in code, marked `ponytail:`):
 - Output limits in `tws/safety/stim.py` must come from IEC 60601-2-10 and a hardware current limiter that is independent of software.
 - Impedance threshold, HR drop / recovery fractions in `tws/safety/gate.py` need tuning on real signals.
 - Detector is a synthetic baseline; per-patient training on CHB-MIT temporal channels is not done yet.
-No clinical claims. This repo is a software demo, not a medical device.

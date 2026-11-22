@@ -3,7 +3,7 @@
 ![CI](https://github.com/enclaireee/TWS-taVNS/actions/workflows/ci.yml/badge.svg)
 
 Software demo of a closed-loop earbud that detects a seizure and responds with vagus-nerve stimulation (taVNS),
-with a safety layer that can always stop it. **Not a medical device; no clinical claims.**
+with a safety layer that can always stop it.
 
 ![Dashboard during a seizure scenario](docs/img/dashboard-stim.png)
 

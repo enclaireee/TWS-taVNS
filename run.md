@@ -1,6 +1,6 @@
 # How to run the demo
 
-A simulated earbud streams EEG, heart rate and motion data. The software watches it, decides whether a seizure is happening, and either starts stimulation or refuses because a safety rule says no. Nothing here is real hardware, and nothing is a medical device.
+A simulated earbud streams EEG, heart rate and motion data. The software watches it, decides whether a seizure is happening, and either starts stimulation or refuses because a safety rule says no. Nothing here is real hardware.
 
 ![Pipeline](docs/img/pipeline.svg)
 

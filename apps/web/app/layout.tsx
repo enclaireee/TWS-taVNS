@@ -7,7 +7,7 @@ const mono = Geist_Mono({ subsets: ["latin"], variable: "--font-geist-mono", dis
 
 export const metadata: Metadata = {
   title: "taVNS Dashboard",
-  description: "Clinician and caregiver dashboard",
+  description: "Closed-loop taVNS earbud demo: live telemetry, safety state and event log",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
